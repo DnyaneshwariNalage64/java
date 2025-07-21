@@ -1,0 +1,14 @@
+public class area {
+    static void area(int a,int b){
+        int c=a*b;
+        System.out.println("area of ractangle is "+c);
+    }
+    static void area (int r){
+        double c=3.14*r*r;
+        System.out.println("area of circle is "+c);
+    }
+    public static void main(String[] args) {
+        area(20, 50);
+        area(5);
+    }
+}
