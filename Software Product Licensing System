@@ -1,0 +1,32 @@
+
+
+
+
+class SoftwareProduct{
+
+    String productname;
+    String version;
+    /**
+     *
+     */
+    void displayProductinfo(){
+        System.out.println("name :"+productname+" version:"+version);
+    }
+}
+class  trialSoftwareProduct extends SoftwareProduct {
+
+    int validDay;
+    void display(){
+        displayProductinfo();
+        System.out.println(validDay);
+    }
+
+}
+class registerSoftware extends SoftwareProduct {
+    String key;
+    void displayregister(){
+        displayProductinfo();
+        System.out.println(key);
+    }
+
+}
