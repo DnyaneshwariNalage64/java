@@ -1,0 +1,89 @@
+import java.util.Scanner;
+
+public class QueueDemo {
+    private int []data;
+    public static final int Defalt_Size=10;
+    int end=0;
+    
+    QueueDemo(int size){
+        this.data=new int[size];
+    }
+    QueueDemo(){
+        this(Defalt_Size);
+    }
+    boolean isFull(){
+        return end==data.length;
+    }
+    boolean isEmpty(){
+        return end==0;
+    }
+    boolean insert(int item){
+        if(isFull()){
+            System.out.println("full");
+            return false;
+        }
+        data[end]=item;
+        end++;
+        return true;
+    }
+    int remove(){
+        if (isEmpty()) {
+            System.out.println("empty");
+            return 0;
+        }
+        int remove_item=data[end];
+        end--;
+        return remove_item;
+    }
+    void display(){
+        for(int i=0;i<end;i++){
+            System.out.print(data[i]+"->");
+        }
+    }
+     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        QueueDemo q = new QueueDemo(5);
+
+        int choice;
+        do {
+            System.out.println("\nStack Operations Menu:");
+            System.out.println("1. Push");
+            System.out.println("2. Pop");
+            System.out.println("3. Display");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter element to push: ");
+                    int item = sc.nextInt();
+                    q.insert(item);
+                    break;
+
+                case 2:
+                    int popped = q.remove();
+                    if (popped != -1) {
+                        System.out.println("Popped element: " + popped);
+                    }
+                    break;
+
+                
+
+                case 3:
+                    q.display();
+                    break;
+
+                case 4:
+                    System.out.println("Exiting...");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice. Please enter 1-5.");
+            }
+
+        } while (choice != 4);
+
+        sc.close();
+    }
+}
