@@ -1,0 +1,54 @@
+import java.util.Stack;
+
+public class QueueUsingStack {
+    Stack<Integer>first;
+    Stack<Integer>second;
+    public QueueUsingStack(){
+        first=new Stack<>();
+        second=new Stack<>();
+    }
+    public void add(int item){
+        first.push(item);
+    }
+    public int remove(){
+        while (!first.isEmpty()) {
+            int poped=first.pop();
+            second.push(poped);
+        }
+        int removed=second.pop();
+        while (!second.isEmpty()) {
+            int poped=second.pop();
+            first.push(poped);
+        }
+        return removed;
+    }
+    public boolean isEmpty(){
+        return first.isEmpty();
+    }
+    public int peek(){
+        while (!first.isEmpty()) {
+            int poped=first.pop();
+            second.push(poped);
+        }
+        int peek=second.pop();
+        while (!second.isEmpty()) {
+            int poped=second.pop();
+            first.push(poped);
+        }
+        return peek;
+    }
+    
+    public static void main(String[] args) {
+        QueueUsingStack q=new QueueUsingStack();
+        q.add(3);
+        q.add(4);
+        q.add(5);
+        q.add(6);
+        q.add(7);
+        q.add(8);
+        q.add(9);
+        System.out.println(q.remove());
+        System.out.println(q.remove());
+        System.out.println(q.first);
+    }
+}
