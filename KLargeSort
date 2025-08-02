@@ -1,0 +1,15 @@
+import java.util.Arrays;
+
+public class Solution {
+    public static int[] Klargest(int[] a, int k, int n) {
+        
+        Arrays.sort(a);
+        int[] result=new int[k];
+        int index=0;
+        for (int i = n - k; i < n; i++) {
+            result[index++] = a[i];
+        }
+        return result;
+    }
+        
+}
