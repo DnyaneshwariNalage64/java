@@ -1,0 +1,19 @@
+public class Solution{  
+
+    public static int findUnique(int[] arr){
+		
+    for(int i=0;i<arr.length;i++){
+      boolean isunique=true;
+      for(int j=0;j<arr.length;j++){
+        if(i!=j&&arr[i]==arr[j]){
+          isunique=false;
+          break;
+        }
+      }
+      if(isunique){
+      return arr[i];
+    }
+    }
+    return -1;
+  }
+}
