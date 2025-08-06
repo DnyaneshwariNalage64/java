@@ -1,0 +1,72 @@
+
+ class TreeNode {
+     int data;
+     TreeNode left;
+     TreeNode right;
+     TreeNode() {
+         this.data = 0;
+         this.left = null;
+         this.right = null;
+     }
+     TreeNode(int data) {
+         this.data = data;
+         this.left = null;
+         this.right = null;
+     }
+     TreeNode(int data, TreeNode left, TreeNode right) {
+         this.data = data;
+         this.left = left;
+         this.right = right;
+     }
+ };
+ 
+import java.util.ArrayList;
+import java.util.List;
+
+// import java.util.List;
+public class Solution {
+    public static List<List<Integer>> getTreeTraversal(TreeNode root) {
+        // Write your code here.
+        List<Integer> inOrder = new ArrayList<>();
+        List<Integer> preOrder = new ArrayList<>();
+        List<Integer> postOrder = new ArrayList<>();
+        List<List<Integer>> result = new ArrayList<>();
+
+        // Use a stack-like approach with manual recursion using a single traversal
+        // Start the traversal
+        // We'll do all three traversals in one go recursively
+
+        if (root != null) {
+            // Stack frame equivalent ? handle this node
+            // Pre-order: root -> left -> right
+            preOrder.add(root.data);
+
+            // Traverse left subtree
+            List<List<Integer>> leftTraversal = getTreeTraversal(root.left);
+            if (!leftTraversal.isEmpty()) {
+                inOrder.addAll(leftTraversal.get(0));   // in-order
+                preOrder.addAll(leftTraversal.get(1));  // pre-order
+                postOrder.addAll(leftTraversal.get(2)); // post-order
+            }
+
+            // In-order: left -> root -> right
+            inOrder.add(root.data);
+
+            // Traverse right subtree
+            List<List<Integer>> rightTraversal = getTreeTraversal(root.right);
+            if (!rightTraversal.isEmpty()) {
+                inOrder.addAll(rightTraversal.get(0));   // in-order
+                preOrder.addAll(rightTraversal.get(1));  // pre-order
+                postOrder.addAll(rightTraversal.get(2)); // post-order
+            }
+
+            // Post-order: left -> right -> root
+            postOrder.add(root.data);
+        }
+
+        result.add(inOrder);
+        result.add(preOrder);
+        result.add(postOrder);
+        return result;
+    }
+}
