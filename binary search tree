@@ -1,0 +1,60 @@
+import java.util.Scanner;
+
+public class BinarySearchTree {
+    public class Node{
+        int value;
+        Node left;
+        Node right;
+
+        public Node (int value){
+            this.value=value;
+        }
+    }
+    private Node root;
+    public void populate(Scanner sc){
+        System.out.println("enter the value");
+        int value=sc.nextInt();
+        root=new Node(value);
+        populate(sc,root);
+
+    }
+    private void populate(Scanner sc,Node node){
+        System.out.println("you want to enter left node");
+        boolean left=sc.nextBoolean();
+        if(left){
+        System.out.println("enter the left node of "+node.value);
+        int leftvalue=sc.nextInt();
+        // if(leftvalue!=-1){
+            // Node lvalue=new Node(leftvalue);
+            // node.left=lvalue;
+            node.left=new Node(leftvalue);
+            populate(sc,node.left);
+        // }
+        }
+        System.out.println("you want to enter right node");
+        boolean right=sc.nextBoolean();
+        if(right){
+        System.out.println("enter the right node of "+node.value);
+        int rightvalue=sc.nextInt();
+        node.right=new Node(rightvalue);
+        populate(sc,node.right);
+        }
+    }
+    public void disply(){
+        disply(root," ");
+    }
+    private void disply(Node node,String indent){
+        if(node==null){
+            return;
+        }
+        System.out.println(indent+node.value);
+        disply(node.left,indent+"\t");
+        disply(node.right,indent+"\t");
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        BinarySearchTree tree=new BinarySearchTree();
+        tree.populate(sc);
+        tree.disply();
+    }
+}
